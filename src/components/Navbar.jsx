@@ -1,56 +1,61 @@
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
-  const [active, setActive] = useState('Home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const links = [
-    { label: 'Home',            href: '#'          },
-    { label: 'About Us',        href: '#story'     },
-    { label: 'Collections',     href: '#collections' },
-    { label: 'Our Process',     href: '#lookbook'  },
-    { label: 'Contact',         href: '#contact'   },
+    { label: 'Home',        href: '/'            },
+    { label: 'About Us',    href: '/about'       },
+    { label: 'Collections', href: '/collections' },
+    { label: 'Our Process', href: '/process'     },
+    { label: 'Contact',     href: '/contact'     },
   ];
+
+  const isActive = (href) => {
+    if (href === '/') return location.pathname === '/';
+    return location.pathname.startsWith(href);
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-[#FDFAF5] border-b border-[rgba(14,26,48,0.12)]">
       <div className="flex items-center justify-between py-4 md:py-[22px] px-6 md:px-10">
         {/* Brandmark */}
-        <div className="flex flex-col items-start gap-0.5">
-          <span className="font-serif-luxury text-xl md:text-2xl tracking-wide leading-none normal-case not-italic">
+        <Link to="/" className="flex flex-col items-start gap-0.5 no-underline" onClick={() => setIsMobileMenuOpen(false)}>
+          <span className="font-serif-luxury text-xl md:text-2xl tracking-wide leading-none normal-case not-italic text-[#2B2820]">
             Onzone
           </span>
           <small className="font-mono text-[0.55rem] tracking-[0.16em] text-[#6B665A] uppercase">
             Since 1999
           </small>
-        </div>
+        </Link>
 
         {/* Desktop Nav links */}
         <div className="hidden lg:flex gap-8 text-[0.78rem] text-[#2B2820]">
           {links.map(({ label, href }) => (
-            <a
+            <Link
               key={label}
-              href={href}
-              onClick={() => setActive(label)}
-              className={`pb-0.5 transition-all duration-200 no-underline text-ink ${
-                active === label
-                  ? 'opacity-100 font-semibold border-b border-[#0E1A30]'
-                  : 'opacity-65 font-normal border-b border-transparent hover:opacity-100'
+              to={href}
+              className={`pb-0.5 transition-all duration-200 no-underline ${
+                isActive(href)
+                  ? 'opacity-100 font-semibold border-b border-[#0E1A30] text-[#0E1A30]'
+                  : 'opacity-65 font-normal border-b border-transparent hover:opacity-100 text-[#2B2820]'
               }`}
             >
               {label}
-            </a>
+            </Link>
           ))}
         </div>
 
         {/* Desktop CTA & Mobile Toggle */}
         <div className="flex items-center gap-4">
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             className="hidden lg:inline-block font-mono text-[0.66rem] tracking-[0.08em] uppercase bg-[#0E1A30] text-[#FDFAF5] py-[11px] px-[22px] rounded-full no-underline transition-colors duration-200 hover:bg-[#A87B31]"
           >
             Become a Partner
-          </a>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
@@ -71,29 +76,26 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-[#FDFAF5] border-b border-[rgba(14,26,48,0.12)] shadow-lg py-4 px-6 flex flex-col gap-4">
+        <div className="lg:hidden absolute top-full left-0 w-full bg-[#FDFAF5] border-b border-[rgba(14,26,48,0.12)] shadow-lg py-4 px-6 flex flex-col gap-2">
           {links.map(({ label, href }) => (
-            <a
+            <Link
               key={label}
-              href={href}
-              onClick={() => {
-                setActive(label);
-                setIsMobileMenuOpen(false);
-              }}
-              className={`text-sm py-2 transition-all duration-200 no-underline text-ink ${
-                active === label ? 'font-semibold text-[#A87B31]' : 'opacity-80'
+              to={href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`text-sm py-2.5 border-b border-[rgba(14,26,48,0.06)] transition-all duration-200 no-underline ${
+                isActive(href) ? 'font-semibold text-[#A87B31]' : 'text-[#2B2820] opacity-80'
               }`}
             >
               {label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="font-mono text-[0.66rem] tracking-[0.08em] uppercase bg-[#0E1A30] text-[#FDFAF5] py-[11px] px-[22px] rounded-full no-underline transition-colors duration-200 hover:bg-[#A87B31] text-center mt-2"
+            className="font-mono text-[0.66rem] tracking-[0.08em] uppercase bg-[#0E1A30] text-[#FDFAF5] py-[11px] px-[22px] rounded-full no-underline transition-colors duration-200 hover:bg-[#A87B31] text-center mt-3"
           >
             Become a Partner
-          </a>
+          </Link>
         </div>
       )}
     </nav>
@@ -101,3 +103,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+

@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
 import UtilityBar from './components/UtilityBar';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import CategoriesStrip from './components/CategoriesStrip';
-import Story from './components/Story';
-import Collections from './components/Collections';
-import RetailFirst from './components/RetailFirst';
-import Lookbook from './components/Lookbook';
-import Strengths from './components/Strengths';
-import Philosophy from './components/Philosophy';
-import QuoteBlock from './components/QuoteBlock';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
+
+import Home from './pages/Home';
+import About from './pages/About';
+import Collections from './pages/Collections';
+import Process from './pages/Process';
+import ContactPage from './pages/ContactPage';
 
 const App = () => {
   useEffect(() => {
@@ -23,24 +21,24 @@ const App = () => {
       easing: 'ease-out-cubic',
     });
   }, []);
+
   return (
-    <div className="min-h-screen bg-cream-light font-sans text-ink">
-      <UtilityBar />
-      <Navbar />
-      <main>
-        <Hero />
-        <CategoriesStrip />
-        <Story />
-        <Collections />
-        <RetailFirst />
-        <Lookbook />
-        <Strengths />
-        <Philosophy />
-        <QuoteBlock />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen bg-cream-light font-sans text-ink">
+        <UtilityBar />
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/collections" element={<Collections />} />
+            <Route path="/process" element={<Process />} />
+            <Route path="/contact" element={<ContactPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 };
 
