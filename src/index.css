@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #0E1A30;
+  --navy-soft: #16233D;
+  --cream: #F1EAE0;
+  --white: #FDFAF5;
+  --ink: #2B2820;
+  --muted: #6B665A;
+  --gold: #C6963F;
+  --gold-dark: #A87B31;
+  --line: rgba(14,26,48,0.12);
+  --line-on-dark: rgba(255,255,255,0.14);
+  --serif: 'Montserrat', sans-serif;
+  --sans: 'Montserrat', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+
+@layer base {
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background-color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-serif-luxury {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+  }
+
+  .font-mono-accent {
+    font-family: var(--mono);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
+
+/* Luxury visual utility classes */
+.bg-cream-light {
+  background-color: var(--cream);
+}
+.bg-cream-card {
+  background-color: #E8E1D5;
+}
+.bg-navy-dark {
+  background-color: var(--navy);
+}
+.bg-navy-card {
+  background-color: var(--navy-soft);
+}
+.text-gold-accent {
+  color: var(--gold);
+}
+.text-gold-dark {
+  color: var(--gold-dark);
+}
+.border-gold-accent {
+  border-color: var(--gold);
+}
+.bg-gold-accent {
+  background-color: var(--gold);
+}
+
+/* Eyebrow styling inspired by prompt */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+.eyebrow.on-dark {
+  color: var(--gold);
+}
+
+/* Custom Keyframe Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(198, 150, 63, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(198, 150, 63, 0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s infinite;
+}
+
+.backdrop-glass {
+  background: rgba(241, 234, 224, 0.88);
+  backdrop-filter: blur(12px);
+}
+.backdrop-glass-dark {
+  background: rgba(14, 26, 48, 0.88);
+  backdrop-filter: blur(12px);
+}
