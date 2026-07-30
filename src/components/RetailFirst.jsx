@@ -1,49 +1,103 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const RetailFirst = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 50,
+    });
+  }, []);
+
   return (
-    <section data-aos="fade-up" className="bg-[#0E1A30] text-[#FDFAF5]">
-      <div className="grid grid-cols-1 md:grid-cols-2">
-
-        {/* Left: image — relative container lets the absolute img fill 100% of grid cell height on desktop */}
-        <div className="relative min-h-[300px] md:min-h-[520px]">
-          <img
-            src="/images/img_5.jpeg"
-            alt="Onzone retail"
-            className="absolute inset-0 w-full h-full object-cover md:object-contain object-center block"
-          />
-        </div>
-
-        {/* Right: copy */}
-        <div className="py-10 px-6 md:py-16 md:px-[60px] flex flex-col justify-center">
-          <div className="font-mono text-[0.6rem] md:text-[0.68rem] tracking-[0.18em] uppercase text-[#C6963F] mb-3.5">
-            Retail First
+    <section className="bg-[#FDFAF5] text-[#0E1A30] overflow-hidden py-16 md:py-24">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+        {/* Two‑column layout – image on left, text on right */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+          {/* Left: image with fade-right transition */}
+          <div
+            data-aos="fade-right"
+            data-aos-delay="100"
+            className="relative rounded-2xl overflow-hidden shadow-xl"
+          >
+            <img
+              src="/images/img_5.jpeg"
+              alt="Onzone retail"
+              className="w-full h-full object-cover min-h-[280px] md:min-h-[450px]"
+            />
           </div>
 
-          <h2 className="font-serif-luxury font-normal text-3xl md:text-[clamp(1.8rem,3vw,2.6rem)] leading-[1.1] mb-5 normal-case not-italic">
-            We grow <em className="text-[#C6963F] italic">with our</em> retailers.<br />
-            Not over them.
-          </h2>
+          {/* Right: copy with staggered transitions */}
+          <div data-aos="fade-up" data-aos-delay="200">
+            {/* Gold label */}
+            <div className="flex items-center gap-3.5 mb-4">
+              <div className="w-12 h-[2px] bg-[#C6963F]" />
+              <span className="font-mono text-[0.8rem] font-bold tracking-[0.22em] uppercase text-[#C6963F]">
+                Retail First
+              </span>
+            </div>
 
-          <p className="text-white/70 leading-[1.7] mb-10 max-w-[480px] text-sm md:text-base">
-            Today we work directly with 2,500+ active retail stores, across formats ranging from 200 sq. ft. outlets to 100,000 sq. ft. large-format stores — including standalone retailers, multi-outlet chains and export partners.
-          </p>
+            {/* Heading */}
+            <h2 className="font-serif-luxury font-normal text-3xl md:text-[clamp(2rem,3.5vw,3.2rem)] leading-[1.1] mb-5 normal-case not-italic">
+              We grow <em className="text-[#C6963F] italic">with our</em>{" "}
+              retailers.
+              <br />
+              Not over them.
+            </h2>
 
-          <div className="grid grid-cols-2 gap-5 md:gap-7">
-            {[
-              { val: '2,500+',      label: 'Direct Retail Partners' },
-              { val: '100K sqft+', label: 'Largest Store Format' },
-              { val: '100K+',       label: 'Shirts In Stock' },
-              { val: '50K+',        label: 'Trousers & Denims' },
-            ].map(stat => (
-              <div key={stat.label} className="border-l border-white/20 pl-4 md:pl-[18px]">
-                <b className="font-serif-luxury text-xl md:text-[1.8rem] block mb-1 normal-case not-italic">{stat.val}</b>
-                <span className="font-mono text-[0.55rem] md:text-[0.6rem] tracking-[0.1em] uppercase text-white/50">{stat.label}</span>
-              </div>
-            ))}
+            {/* Description */}
+            <p className="text-[#0E1A30]/70 leading-[1.8] mb-10 max-w-[540px] text-sm md:text-base">
+              Today we work directly with 2,500+ active retail stores, across
+              formats ranging from 200 sq. ft. outlets to 100,000 sq. ft.
+              large-format stores — including standalone retailers, multi-outlet
+              chains and export partners.
+            </p>
+
+            {/* Stats – presented as a bullet list (like the screenshot) */}
+            <div data-aos="fade-up" data-aos-delay="400" className="space-y-4">
+              {[
+                { val: "2,500+", label: "Direct Retail Partners" },
+                { val: "100K+", label: "Shirts In Stock" },
+                { val: "50K+", label: "Trousers & Denims" },
+              ].map((stat, idx) => (
+                <div
+                  key={stat.label}
+                  data-aos="fade-up"
+                  data-aos-delay={500 + idx * 100}
+                  className="flex items-baseline gap-3 border-b border-[#C6963F]/20 pb-3 last:border-0 last:pb-0"
+                >
+                  <span className="text-[#C6963F] font-mono text-lg font-bold">
+                    —
+                  </span>
+                  <div>
+                    <span className="font-serif-luxury text-xl md:text-2xl font-normal block leading-tight">
+                      {stat.val}
+                    </span>
+                    <span className="font-mono text-[0.6rem] md:text-[0.65rem] tracking-[0.15em] uppercase text-[#0E1A30]/50">
+                      {stat.label}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Extra stat: 45% (as seen in screenshot) */}
+            <div
+              data-aos="fade-up"
+              data-aos-delay="700"
+              className="mt-8 pt-6 border-t border-[#C6963F]/30 flex items-center gap-4"
+            >
+              <span className="font-serif-luxury text-3xl md:text-4xl text-[#C6963F]">
+                45%
+              </span>
+              <span className="font-mono text-[0.6rem] md:text-[0.7rem] tracking-[0.1em] uppercase text-[#0E1A30]/60">
+                Growth in retail partnerships
+              </span>
+            </div>
           </div>
         </div>
-
       </div>
     </section>
   );
