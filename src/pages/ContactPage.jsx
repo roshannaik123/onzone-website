@@ -41,23 +41,23 @@ const ContactPage = () => {
 
   return (
     <div>
-      {/* ===== INDIAN TRICOLOR ACCENT BAR ===== */}
-      {/* <div className="w-full h-1.5 bg-gradient-to-r from-[#FF9933] via-[#FFFFFF] to-[#138808]" /> */}
+      {/* ===== INDIAN TRICOLOR ACCENT BAR (optional) ===== */}
+      <div className="w-full h-1 bg-gradient-to-r from-[#FF9933] via-white to-[#138808]" />
 
-      {/* ===== HERO – Trade Enquiries (with Background Image) ===== */}
-      <section className="relative bg-[#0E1A30] bg-[url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1600')] bg-cover bg-center bg-blend-overlay text-white py-20 md:py-28 overflow-hidden">
+      {/* ===== HERO – Trade Enquiries ===== */}
+      <section className="relative bg-[#0E1A30] bg-[url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1600')] bg-cover bg-center bg-blend-overlay text-white py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-[#0E1A30]/80 -z-0" />
-        <div className="relative z-10 max-w-[1180px] mx-auto px-6 md:px-10">
+        <div className="relative z-10 max-w-[1180px] mx-auto px-6 md:px-12">
           <div data-aos="fade-up" data-aos-delay="100">
-            <div className="font-mono text-[0.68rem] tracking-[0.18em] uppercase text-[#C6963F] mb-4">
+            <div className="font-mono text-xs tracking-[0.2em] uppercase text-[#C6963F] mb-4">
               Trade Enquiries
             </div>
-            <h1 className="font-serif-luxury text-4xl md:text-6xl leading-tight mb-6 normal-case not-italic">
+            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl leading-tight mb-6 normal-case">
               Build the next season
               <br />
-              <em className="text-[#C6963F] italic">with us.</em>
+              <span className="text-[#C6963F] italic">with us.</span>
             </h1>
-            <p className="text-white/80 max-w-xl text-base leading-relaxed">
+            <p className="text-white/80 max-w-xl text-base md:text-lg leading-relaxed">
               If your approach to retail values structure, reliability and
               long-term thinking, we look forward to building the next season
               together.
@@ -66,30 +66,30 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* ===== Contact Content (Solid cream – keeps form readable) ===== */}
-      <section className="py-16 md:py-24 bg-[#F1EAE0]">
-        <div className="max-w-[1180px] mx-auto px-6 md:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Left: Contact info */}
+      {/* ===== CONTACT SECTION ===== */}
+      <section className="py-16 md:py-28 bg-[#F8F4EF]">
+        <div className="max-w-[1180px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
+            {/* Left: Contact Info */}
             <div>
               <h2
                 data-aos="fade-up"
                 data-aos-delay="100"
-                className="font-serif-luxury font-normal text-2xl md:text-3xl leading-tight mb-8 normal-case not-italic text-[#0E1A30]"
+                className="font-serif text-3xl md:text-4xl font-normal leading-tight mb-10 text-[#0E1A30]"
               >
                 Get in touch
               </h2>
 
-              <div className="space-y-5 mb-12">
+              <div className="space-y-6 mb-14">
                 {contactItems.map(({ icon, label, value, link }, idx) => (
                   <a
                     key={label}
                     href={link}
                     data-aos="fade-up"
                     data-aos-delay={150 + idx * 80}
-                    className="flex items-start gap-4 group no-underline"
+                    className="flex items-start gap-5 group no-underline"
                   >
-                    <div className="w-11 h-11 rounded-full bg-[#0E1A30] flex items-center justify-center flex-shrink-0 group-hover:bg-[#A87B31] transition-colors">
+                    <div className="w-12 h-12 rounded-full bg-[#0E1A30] flex items-center justify-center flex-shrink-0 group-hover:bg-[#C6963F] transition-colors duration-300 shadow-sm">
                       <svg
                         viewBox="0 0 24 24"
                         fill="none"
@@ -97,16 +97,16 @@ const ContactPage = () => {
                         strokeWidth="1.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="w-5 h-5 group-hover:stroke-white transition-colors"
+                        className="w-5 h-5 group-hover:stroke-white transition-colors duration-300"
                       >
                         <path d={icon} />
                       </svg>
                     </div>
                     <div>
-                      <p className="font-mono text-[0.62rem] tracking-widest uppercase text-[#6B665A] mb-0.5">
+                      <p className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-[#6B665A] mb-0.5">
                         {label}
                       </p>
-                      <p className="text-[#0E1A30] font-medium text-sm md:text-base group-hover:text-[#A87B31] transition-colors">
+                      <p className="text-[#0E1A30] font-medium text-base md:text-lg group-hover:text-[#C6963F] transition-colors duration-300">
                         {value}
                       </p>
                     </div>
@@ -117,100 +117,134 @@ const ContactPage = () => {
               <div
                 data-aos="fade-up"
                 data-aos-delay="400"
-                className="border-t border-[rgba(14,26,48,0.12)] pt-8"
+                className="border-t border-[#0E1A30]/10 pt-8"
               >
-                <div className="font-mono text-[0.62rem] tracking-widest uppercase text-[#6B665A] mb-3">
+                <div className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-[#6B665A] mb-3">
                   Our Location
                 </div>
-                <p className="text-[#0E1A30] text-sm md:text-base leading-relaxed">
+                <p className="text-[#0E1A30] text-base md:text-lg leading-relaxed">
                   Bangalore · Karnataka · India
                 </p>
-                <p className="text-[#6B665A] text-sm mt-4 leading-relaxed">
+                <p className="text-[#6B665A] text-sm md:text-base mt-5 leading-relaxed max-w-xs">
                   Working with retail partners across India — from 200 sq. ft.
                   independent stores to 100,000 sq. ft. large-format outlets.
                 </p>
               </div>
             </div>
 
-            {/* Right: Form */}
+            {/* Right: Form - Now bigger and refined */}
             <div
               data-aos="fade-up"
               data-aos-delay="200"
-              className="bg-[#E8E1D5] p-6 md:p-10 rounded"
+              className="bg-white p-8 md:p-12 rounded-2xl shadow-lg"
             >
-              <div className="font-mono text-[0.62rem] tracking-widest uppercase text-[#6B665A] mb-6">
+              <div className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-[#6B665A] mb-8">
                 Send an Enquiry
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                 {[
                   { label: "Your Name", type: "text" },
                   { label: "Business Name / Store Type", type: "text" },
                 ].map(({ label, type }) => (
                   <div key={label}>
-                    <label className="block font-mono text-[0.58rem] tracking-[0.12em] uppercase text-[#6B665A] mb-2">
+                    <label className="block font-mono text-[0.6rem] tracking-[0.1em] uppercase text-[#6B665A] mb-2">
                       {label}
                     </label>
                     <input
                       type={type}
-                      className="w-full bg-[#FDFAF5] border-0 border-b-2 border-[rgba(14,26,48,0.12)] px-0 py-2.5 font-sans text-[0.9rem] outline-none focus:border-[#A87B31] transition-colors"
+                      className="w-full bg-[#FDFAF5] border-b-2 border-[#0E1A30]/10 px-0 py-3 font-sans text-base outline-none focus:border-[#C6963F] transition-colors duration-300 placeholder:text-[#B0A99A]"
+                      placeholder={`Enter your ${label.toLowerCase()}`}
                     />
                   </div>
                 ))}
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                 {[
                   { label: "City", type: "text" },
                   { label: "Phone Number", type: "tel" },
                 ].map(({ label, type }) => (
                   <div key={label}>
-                    <label className="block font-mono text-[0.58rem] tracking-[0.12em] uppercase text-[#6B665A] mb-2">
+                    <label className="block font-mono text-[0.6rem] tracking-[0.1em] uppercase text-[#6B665A] mb-2">
                       {label}
                     </label>
                     <input
                       type={type}
-                      className="w-full bg-[#FDFAF5] border-0 border-b-2 border-[rgba(14,26,48,0.12)] px-0 py-2.5 font-sans text-[0.9rem] outline-none focus:border-[#A87B31] transition-colors"
+                      className="w-full bg-[#FDFAF5] border-b-2 border-[#0E1A30]/10 px-0 py-3 font-sans text-base outline-none focus:border-[#C6963F] transition-colors duration-300 placeholder:text-[#B0A99A]"
+                      placeholder={`Enter ${label.toLowerCase()}`}
                     />
                   </div>
                 ))}
               </div>
 
-              <div className="mb-5">
-                <label className="block font-mono text-[0.58rem] tracking-[0.12em] uppercase text-[#6B665A] mb-2">
+              <div className="mb-6">
+                <label className="block font-mono text-[0.6rem] tracking-[0.1em] uppercase text-[#6B665A] mb-2">
                   Email Address
                 </label>
                 <input
                   type="email"
-                  className="w-full bg-[#FDFAF5] border-0 border-b-2 border-[rgba(14,26,48,0.12)] px-0 py-2.5 font-sans text-[0.9rem] outline-none focus:border-[#A87B31] transition-colors"
+                  className="w-full bg-[#FDFAF5] border-b-2 border-[#0E1A30]/10 px-0 py-3 font-sans text-base outline-none focus:border-[#C6963F] transition-colors duration-300 placeholder:text-[#B0A99A]"
+                  placeholder="you@example.com"
                 />
               </div>
 
-              <div className="mb-5">
-                <label className="block font-mono text-[0.58rem] tracking-[0.12em] uppercase text-[#6B665A] mb-2">
+              {/* Select dropdown – now with right indent and custom arrow */}
+              <div className="mb-6">
+                <label className="block font-mono text-[0.6rem] tracking-[0.1em] uppercase text-[#6B665A] mb-2">
                   Type of Enquiry
                 </label>
-                <select className="w-full bg-[#FDFAF5] border-0 border-b-2 border-[rgba(14,26,48,0.12)] px-0 py-2.5 font-sans text-[0.9rem] outline-none focus:border-[#A87B31] transition-colors appearance-none cursor-pointer">
-                  <option value="">Select one…</option>
-                  <option>Become a Retail Partner</option>
-                  <option>Request Product Catalogue</option>
-                  <option>Bulk / Wholesale Order</option>
-                  <option>General Enquiry</option>
-                </select>
+                <div className="relative">
+                  <select
+                    className="w-full bg-[#FDFAF5] border-b-2 border-[#0E1A30]/10 pl-3 pr-8 py-3 font-sans text-base outline-none focus:border-[#C6963F] transition-colors duration-300 appearance-none cursor-pointer"
+                    // style added for option styling (limited support)
+                  >
+                    <option value="" className="py-1 px-2 text-[#6B665A]">
+                      Select one…
+                    </option>
+                    <option className="py-1 px-2 font-medium text-[#0E1A30]">
+                      Become a Retail Partner
+                    </option>
+                    <option className="py-1 px-2 font-medium text-[#0E1A30]">
+                      Request Product Catalogue
+                    </option>
+                    <option className="py-1 px-2 font-medium text-[#0E1A30]">
+                      Bulk / Wholesale Order
+                    </option>
+                    <option className="py-1 px-2 font-medium text-[#0E1A30]">
+                      General Enquiry
+                    </option>
+                  </select>
+                  {/* Custom chevron */}
+                  <svg
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B665A] pointer-events-none"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
               </div>
 
-              <div className="mb-7">
-                <label className="block font-mono text-[0.58rem] tracking-[0.12em] uppercase text-[#6B665A] mb-2">
+              <div className="mb-8">
+                <label className="block font-mono text-[0.6rem] tracking-[0.1em] uppercase text-[#6B665A] mb-2">
                   Message
                 </label>
                 <textarea
                   rows={4}
-                  className="w-full bg-[#FDFAF5] border-0 border-b-2 border-[rgba(14,26,48,0.12)] px-0 py-2.5 font-sans text-[0.9rem] outline-none resize-none focus:border-[#A87B31] transition-colors"
+                  className="w-full bg-[#FDFAF5] border-b-2 border-[#0E1A30]/10 px-0 py-3 font-sans text-base outline-none resize-none focus:border-[#C6963F] transition-colors duration-300 placeholder:text-[#B0A99A]"
                   placeholder="Tell us about your store and requirements…"
                 />
               </div>
 
-              <button className="w-full sm:w-auto font-mono text-[0.7rem] tracking-[0.1em] uppercase bg-[#0E1A30] text-[#FDFAF5] py-4 px-8 border-0 cursor-pointer rounded-sm hover:bg-[#A87B31] transition-colors">
+              {/* Bigger Send Enquiry button */}
+              <button className="w-full sm:w-auto font-mono text-sm tracking-[0.15em] uppercase bg-[#0E1A30] text-white py-5 px-12 rounded-md border-0 cursor-pointer hover:bg-[#C6963F] transition-colors duration-300 shadow-md hover:shadow-lg">
                 Send Enquiry
               </button>
             </div>
@@ -218,10 +252,10 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* ===== Stats Strip (with Background Image) ===== */}
-      {/* <section className="relative bg-[#0E1A30] bg-[url('https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=1600')] bg-cover bg-center bg-blend-overlay py-12 overflow-hidden">
+      {/* ===== STATS STRIP (commented out – you can uncomment if needed) ===== */}
+      {/* <section className="relative bg-[#0E1A30] bg-[url('https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=1600')] bg-cover bg-center bg-blend-overlay py-16 md:py-20 overflow-hidden">
         <div className="absolute inset-0 bg-[#0E1A30]/85 -z-0" />
-        <div className="relative z-10 max-w-[1180px] mx-auto px-6 md:px-10">
+        <div className="relative z-10 max-w-[1180px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { val: "2,500+", label: "Retail Partners" },
@@ -234,10 +268,10 @@ const ContactPage = () => {
                 data-aos="fade-up"
                 data-aos-delay={100 + idx * 80}
               >
-                <p className="font-serif-luxury text-3xl md:text-4xl text-[#C6963F] normal-case not-italic">
+                <p className="font-serif text-3xl md:text-5xl text-[#C6963F] normal-case">
                   {stat.val}
                 </p>
-                <p className="font-mono text-[0.6rem] tracking-widest uppercase text-white/50 mt-1">
+                <p className="font-mono text-[0.6rem] tracking-[0.15em] uppercase text-white/60 mt-1">
                   {stat.label}
                 </p>
               </div>
