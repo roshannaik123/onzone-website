@@ -1,314 +1,832 @@
-import React from "react";
-import AOS from "aos";
-import { useEffect } from "react";
-
-const WhyUsIcon = ({ path }) => (
-  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0E1A30] flex items-center justify-center flex-shrink-0">
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#C6963F"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="w-5 h-5"
-    >
-      <path d={path} />
-    </svg>
-  </div>
-);
-
-const whyUsPoints = [
-  {
-    icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0",
-    title: "Direct Retail Model",
-    desc: "We work directly with 2500+ active retail partners, ensuring faster communication, transparency, and stronger long-term relationships.",
-  },
-  {
-    icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
-    title: "Proven Retail Sell-Through",
-    desc: "Designs and fabrics are selected with deep retail insight — balancing premium appeal with everyday wearability to ensure consistent sell-through.",
-  },
-  {
-    icon: "M4 6h16M4 10h16M4 14h16M4 18h16",
-    title: "Wide Range with Strong Core Depth",
-    desc: "A large active collection supported by dependable core articles enables easy replenishment and meaningful retail display.",
-  },
-  {
-    icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10",
-    title: "Strong Inventory & Refill Capability",
-    desc: "With stock depth of 100,000+ shirts and 50,000+ trousers & denims, retailers benefit from reliable availability and faster reordering.",
-  },
-  {
-    icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-    title: "Commercially Grounded Pricing",
-    desc: "Direct market exposure helps maintain sensible, stable pricing aligned with real retail conditions.",
-  },
-  {
-    icon: "M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636",
-    title: "No Discount-Dumping Philosophy",
-    desc: "Disciplined product planning avoids surplus liquidation and protects long-term brand value.",
-  },
-  {
-    icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
-    title: "Experience Across Retail Scales",
-    desc: "From 200 sq. ft. independent stores to 100,000 sq. ft. large formats, we understand the realities of every retail environment.",
-  },
-  {
-    icon: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z",
-    title: "Consistent Quality & Supply Reliability",
-    desc: "Structured sourcing, production control, and quality checks ensure dependable product consistency across seasons.",
-  },
-];
-
-const beliefs = [
-  {
-    num: "1",
-    title: "Growth Should Be Earned, Not Announced",
-    desc: "We focus on strengthening product and retail trust before seeking visibility.",
-  },
-  {
-    num: "2",
-    title: "Foundations Before Noise",
-    desc: "Consistency in product and disciplined execution matter more than short-term attention.",
-  },
-  {
-    num: "3",
-    title: "Relationships Before Scale",
-    desc: "Direct conversations, active listening, and quick responses build stronger partnerships.",
-  },
-  {
-    num: "4",
-    title: "Improvement is Continuous",
-    desc: "We constantly refine and evolve rather than expanding carelessly.",
-  },
-  {
-    num: "5",
-    title: "Consistency Builds Credibility",
-    desc: "Long-term trust is earned through reliability in quality, service, and commitments.",
-  },
-];
-
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import {
+  Building2,
+  TrendingUp,
+  Home,
+  Store,
+  Globe2,
+  MapPinned,
+} from "lucide-react";
 const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div>
-      {/* Hero Banner */}
-      <section className="relative bg-[#0E1A30] text-white overflow-hidden">
+    <div className="bg-[#FDFAF5] text-[#2B2820]">
+      {/* ═══════════════════════════════════════════════
+          HERO — Full bleed image with centered text
+      ═══════════════════════════════════════════════ */}
+      <section className="relative h-[40vh] md:h-[86vh] flex items-center justify-center overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: "url('/images/img_5.jpeg')" }}
+          className="absolute inset-0 bg-cover bg-no-repeat bg-center"
+          style={{ backgroundImage: "url('/retail_store_1784887597607.jpg')" }}
         />
-        <div className="relative max-w-[1180px] mx-auto px-6 md:px-10 py-20 md:py-32">
-          <div className="font-mono text-[0.68rem] tracking-[0.18em] uppercase text-[#C6963F] mb-4">
-            About Onzone
-          </div>
-          <h1 className="font-serif-luxury text-4xl md:text-6xl leading-tight mb-6 normal-case not-italic">
-            Built without noise.
-            <br />
-            <em className="text-[#C6963F] italic">Worn with intention.</em>
+        <div className="absolute inset-0 bg-[#0E1A30]/65" />
+        <div className="relative z-10 top-26 text-center px-6 max-w-4xl">
+          <h1
+            data-aos="fade-up"
+            className="font-serif-luxury text-2xl sm:text-3xl md:text-5xl text-white leading-[1.1] mb-6 normal-case not-italic"
+          >
+            Built Without Noise. <br />
+            <em className="text-[#C6963F] italic">Worn With Intention.</em>
           </h1>
-          <p className="text-white/70 max-w-xl text-base md:text-lg leading-relaxed">
-            Established in 1999, Onzone has grown into one of India's most
-            trusted menswear brands — built on retail partnerships, not
-            marketing noise.
+          <p
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="text-white/60 text-base md:text-md max-w-2xl mx-auto leading-[1.8]"
+          >
+            Since 1999, Onzone has grown from a single formal shirt line into
+            one of India's most retail‑trusted menswear brands — built on
+            partnerships, craftsmanship, and quiet conviction.
           </p>
         </div>
       </section>
 
-      {/* Our Story */}
-      <section data-aos="fade-up" className="py-16 md:py-24" id="story">
-        <div className="max-w-[1180px] mx-auto px-6 md:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-            <div>
-              <div className="font-mono text-[0.68rem] tracking-[0.18em] uppercase text-[#A87B31] mb-4">
-                Our Story
-              </div>
-              <h2 className="font-serif-luxury font-normal text-3xl md:text-4xl leading-tight mb-6 normal-case not-italic">
-                25 years of trust, one season at a time.
-              </h2>
-              <p className="text-[#6B665A] leading-relaxed mb-4 text-sm md:text-base">
-                Established in 1999 by Rajesh and Mukesh Parekh, Onzone began
-                with a single, unglamorous ambition — build men's clothing that
-                retailers could rely on, season after season.
-              </p>
-              <p className="text-[#6B665A] leading-relaxed mb-4 text-sm md:text-base">
-                From formal shirts we grew into trousers, smart casuals, denims,
-                pyjamas and cargos. Every addition was earned, guided by
-                retailer feedback and the quiet insight only 25 years on the
-                shop floor can bring.
-              </p>
-              <p className="font-semibold text-[#2B2820]">
-                Reach, quality and credibility — before promotion.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <div
-                className="row-span-2 bg-cover bg-center rounded min-h-[350px]"
-                style={{ backgroundImage: "url('/images/img_1.jpeg')" }}
-              />
-              <div
-                className="bg-cover bg-center rounded h-[168px]"
-                style={{ backgroundImage: "url('/images/img_2.jpeg')" }}
-              />
-              <div
-                className="bg-cover bg-center rounded h-[168px]"
-                style={{ backgroundImage: "url('/images/img_3.jpeg')" }}
-              />
-            </div>
+      {/* ═══════════════════════════════════════════════
+          01 · OUR STORY — Split text + image blocks
+      ═══════════════════════════════════════════════ */}
+      <section id="story">
+        <div className="bg-[#f7f4ef] py-16 md:py-24">
+          <div className="max-w-[1180px] mx-auto px-6 md:px-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            <h2
+              data-aos="fade-up"
+              className="font-serif-luxury text-4xl md:text-6xl font-normal text-[#0E1A30] leading-[1.1] normal-case not-italic uppercase"
+            >
+              Our Story.
+            </h2>
+            <p
+              data-aos="fade-up"
+              data-aos-delay="150"
+              className="text-[#6B665A] text-base md:text-lg leading-[1.8] max-w-md"
+            >
+              For over two decades, we have built our story into the fabric of
+              Indian menswear — one season, one retailer at a time.
+            </p>
           </div>
         </div>
-      </section>
 
-      {/* Vision & Mission */}
-      <section data-aos="fade-up" className="py-16 md:py-24 bg-[#F1EAE0]">
-        <div className="max-w-[1180px] mx-auto px-6 md:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-stretch">
-            {/* Vision + Mission cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-[#0E1A30] text-white p-8 rounded relative">
-                <div className="text-4xl mb-4 opacity-20 font-serif italic">
-                  Our
-                </div>
-                <h3 className="font-mono text-lg tracking-widest uppercase text-[#C6963F] mb-4">
-                  Vision
-                </h3>
-                <p className="text-white/80 text-sm leading-relaxed">
-                  To build a <strong>multi-category apparel company</strong>{" "}
-                  known for{" "}
-                  <strong>
-                    consistency, retail closeness, and long-term reliability
-                  </strong>
-                  , growing with discipline and strengthening the foundations
-                  that have guided our journey since <strong>1999</strong>.
-                </p>
-              </div>
-              <div className="bg-[#E8E1D5] p-8 rounded">
-                <div className="text-4xl mb-4 opacity-30 font-serif italic">
-                  Our
-                </div>
-                <h3 className="font-mono text-lg tracking-widest uppercase text-[#0E1A30] mb-4">
-                  Mission
-                </h3>
-                <p className="text-[#2B2820]/80 text-sm leading-relaxed">
-                  To deliver{" "}
-                  <strong>well-designed, commercially viable apparel</strong>{" "}
-                  backed by strong construction quality and dependable service.
-                  Guided by{" "}
-                  <strong>
-                    direct retail engagement, market feedback, and disciplined
-                    execution
-                  </strong>
-                  , we aim to enable continuous growth.
-                </p>
-              </div>
-            </div>
-            {/* Right manifesto */}
-            <div className="flex flex-col justify-center">
-              <h2 className="font-serif-luxury font-normal text-3xl md:text-4xl leading-tight mb-6 normal-case not-italic text-[#0E1A30]">
-                Built for the Long Term.
-                <br />
-                <em className="text-[#A87B31] italic">Built with Retail.</em>
-              </h2>
-              <div className="space-y-3 text-[#6B665A] text-sm md:text-base leading-relaxed border-l-2 border-[#A87B31] pl-6">
-                <p>We are not driven by seasonal noise or short-term volume.</p>
-                <p>
-                  Our focus remains steady — strong product development,
-                  disciplined systems, direct retail engagement, and responsible
-                  expansion.
-                </p>
-                <p>
-                  Every store operates differently. Every market behaves
-                  differently.
-                </p>
-                <p>
-                  Our strength lies in understanding both — and responding with
-                  clarity and commercial sensibility.
-                </p>
-                <p>
-                  Sustainable businesses are built on consistency, partnership,
-                  and mutual growth.
-                </p>
-                <p className="font-semibold text-[#0E1A30]">
-                  If your approach to retail values structure, reliability, and
-                  long-term thinking, we look forward to building the next phase
-                  together.
-                </p>
-              </div>
+        {/* Story Block 1 — The Beginning */}
+        <div className="flex flex-col md:flex-row min-h-[65vh]">
+          <div className="md:w-1/2 bg-[#0E1A30] text-white flex items-center">
+            <div
+              className="px-8 md:px-16 lg:px-20 py-16 max-w-lg"
+              data-aos="fade-right"
+            >
+              <h3 className="font-serif-luxury text-3xl md:text-4xl font-normal mb-6 normal-case not-italic uppercase">
+                {" "}
+                The Beginning
+              </h3>
+              <p className="text-white/70 leading-[1.85] text-[0.95rem] mb-6">
+                Founded in 1999 by{" "}
+                <strong className="text-white">Rajesh Parekh</strong> and{" "}
+                <strong className="text-white">Mukesh Parekh</strong>, Onzone
+                began with formal shirts and a single-minded focus — build men's
+                clothing retailers could count on, season after season.
+              </p>
+              <p className="text-white/50 leading-[1.85] text-[0.95rem]">
+                Every product addition was deliberate, guided by retailer
+                feedback, market demand, and practical insight rather than trend
+                chasing.
+              </p>
             </div>
           </div>
+          <div className="md:w-1/2 min-h-[400px] md:min-h-0 bg-cover bg-center">
+            <img
+              src="/images/img_5.jpeg"
+              alt=""
+              className="w-full h-[450px] object-cover object-top"
+            />
+          </div>
         </div>
-      </section>
 
-      {/* Brand Philosophy */}
-      <section
-        data-aos="fade-up"
-        className="py-16 md:py-24 bg-[#0E1A30] text-white"
-      >
-        <div className="max-w-[1180px] mx-auto px-6 md:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            <div>
-              <div className="font-mono text-[0.68rem] tracking-[0.18em] uppercase text-[#C6963F] mb-4">
-                Brand Philosophy
-              </div>
-              <h2 className="font-serif-luxury font-normal text-3xl md:text-4xl leading-tight mb-4 normal-case not-italic">
-                Five beliefs.
-                <br />
-                <em className="text-[#C6963F] italic">Quietly held.</em>
-              </h2>
-              <p className="text-white/60 leading-relaxed mb-8 text-sm md:text-base">
-                Our philosophy is grounded in a few simple but firm beliefs:
+        {/* Story Block 2 — The Growth */}
+        <div className="flex flex-col md:flex-row-reverse min-h-[65vh]">
+          <div className="md:w-1/2 bg-[#f7f4ef] flex items-center">
+            <div
+              className="px-8 md:px-16 lg:px-20 py-16 max-w-lg"
+              data-aos="fade-left"
+            >
+              <h3 className="font-serif-luxury text-3xl md:text-4xl font-normal mb-6 normal-case not-italic uppercase">
+                The Growth
+              </h3>
+              <p className="text-[#6B665A] leading-[1.85] text-[0.95rem] mb-6">
+                From formal shirts, we expanded into trousers, smart casuals,
+                denims, pyjamas, cargos, and club wear trousers. Geographically,
+                the journey followed the same philosophy — steady, earned, never
+                rushed.
               </p>
-              <div className="space-y-4">
-                {beliefs.map((b) => (
-                  <div key={b.num} className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-white/10 border border-white/20 rounded flex items-center justify-center flex-shrink-0 font-mono font-bold text-[#C6963F]">
-                      {b.num}
-                    </div>
-                    <div>
-                      <p className="font-semibold text-white text-sm mb-1">
-                        {b.title}
-                      </p>
-                      <p className="text-white/55 text-sm leading-relaxed">
-                        {b.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-8 text-white/60 text-sm italic">
-                This is how we have grown —{" "}
-                <strong className="text-white">
-                  quietly, consistently, and with intention.
+              <p className=" text-[#6B665A] leading-[1.85] text-[0.95rem]">
+                Beginning in Bangalore, expanding across Karnataka and South
+                India, and today operating across{" "}
+                <strong className="text-[#0E1A30]">
+                  South, Central, Central-West, North-East, and North India.
                 </strong>
               </p>
             </div>
-            <div>
-              <div className="font-mono text-[0.68rem] tracking-[0.18em] uppercase text-[#C6963F] mb-8">
-                Why Us
+          </div>
+          <div className="md:w-1/2 min-h-[400px] md:min-h-0 bg-cover bg-center">
+            <img
+              src="/images/img_7.jpeg"
+              alt=""
+              className="w-full h-[470px] object-cover object-top"
+            />
+          </div>
+        </div>
+
+        {/* Story Block 3 — Onzone Today */}
+        <div className="flex flex-col md:flex-row min-h-[65vh]">
+          <div className="md:w-1/2 bg-[#0E1A30] text-white flex items-center">
+            <div
+              className="px-8 md:px-16 lg:px-20 py-16 max-w-lg"
+              data-aos="fade-right"
+            >
+              <h3 className="font-serif-luxury text-3xl md:text-4xl font-normal mb-6 normal-case not-italic uppercase">
+                Onzone Today
+              </h3>
+              <p className="text-white/70 leading-[1.85] text-[0.95rem] mb-6">
+                Today, Onzone stands at the intersection of trust and quiet
+                ambition. With{" "}
+                <strong className="text-[#C6963F]">
+                  2,500+ active retail partners
+                </strong>
+                , a multi-category portfolio, and presence across five regions
+                of India — we continue to build the future.
+              </p>
+              <p className="text-white/50 leading-[1.85] text-[0.95rem]">
+                Reach, quality and credibility — before promotion. This
+                quiet-first approach remains one of the defining strengths of
+                the organisation.
+              </p>
+            </div>
+          </div>
+          <div className="md:w-1/2 min-h-[400px] md:min-h-0 bg-cover bg-center">
+            <img
+              src="/images/img_8.jpeg"
+              alt=""
+              className="w-full h-[470px] object-cover object-top"
+            />
+          </div>
+        </div>
+      </section>
+      <section id="style-journey" class="py-20 md:py-28 bg-[#FDFAF5]">
+        <div class="max-w-[1100px] mx-auto px-6 text-center">
+          <div data-aos="fade-up">
+            <div class="flex items-center justify-center gap-4 mb-6">
+              <div class="w-16 h-px bg-[#C6963F]" />
+              <span class="font-mono text-[1rem] tracking-[0.3em] uppercase text-[#6B665A]">
+                Our Philosophy
+              </span>
+              <div class="w-16 h-px bg-[#C6963F]" />
+            </div>
+
+            <h2 class="font-serif-luxury text-4xl md:text-5xl lg:text-5xl text-[#0E1A30] normal-case not-italic leading-[1.1]">
+              STYLE IS A JOURNEY.
+            </h2>
+            <h2 class="font-serif-luxury text-4xl md:text-5xl lg:text-5xl text-[#C6963F] normal-case not-italic leading-[1.1] mt-2">
+              NOT A DESTINATION.
+            </h2>
+
+            <div class="w-12 h-px bg-[#C6963F] mx-auto mt-8" />
+
+            <p class="font-serif-luxury text-base md:text-lg text-[#2B2820]/60 leading-[1.8] not-italic max-w-2xl mx-auto mt-6">
+              Every season brings new stories, new silhouettes, and new ways to
+              express who you are.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section className="bg-[#F7F6F4] py-24 -mt-30">
+        <div className="max-w-[1450px] mx-auto px-6 lg:px-10 space-y-32">
+          {/* OUR MISSION */}
+          <div className="grid lg:grid-cols-2 gap-24 items-center">
+            {/* Images */}
+            <div className="relative">
+              <img
+                src="/images/img_2.jpeg"
+                alt=""
+                className="w-full h-[620px] object-cover"
+              />
+
+              <img
+                src="/images/img_2.jpeg"
+                alt=""
+                className="absolute bottom-[-45px] right-[-35px] w-[170px] h-[190px] object-cover border-[8px] border-[#F7F6F4]"
+              />
+            </div>
+
+            {/* Text */}
+            <div className="max-w-[620px]">
+              <h2 className="font-serif-luxury text-[58px] uppercase leading-none mb-8">
+                Our Mission
+              </h2>
+
+              <p className="text-[#444] text-[19px] leading-9 mb-10">
+                At Onzone, our mission is simple—to craft clothing that combines
+                timeless design with exceptional comfort. Every collection is
+                designed to make everyday dressing effortless while maintaining
+                premium quality.
+              </p>
+
+              <p className="text-[#444] text-[19px] leading-9">
+                We continue to innovate through better fabrics, refined
+                silhouettes and thoughtful craftsmanship, ensuring every garment
+                delivers style, confidence and lasting value.
+              </p>
+            </div>
+          </div>
+
+          {/* OUR VISION */}
+
+          <div className="grid lg:grid-cols-2 gap-24 items-center">
+            {/* Text */}
+
+            <div className="max-w-[620px]">
+              <h2 className="font-serif-luxury text-[58px] uppercase leading-none mb-8">
+                Our Vision
+              </h2>
+
+              <p className="text-[#444] text-[19px] leading-9 mb-10">
+                Our vision is to become India's most trusted fashion
+                destination, creating apparel that seamlessly blends
+                sophistication, functionality and affordability.
+              </p>
+
+              <p className="text-[#444] text-[19px] leading-9">
+                We believe fashion should inspire confidence while remaining
+                accessible to everyone, helping people express themselves
+                through premium everyday essentials.
+              </p>
+            </div>
+
+            {/* Image */}
+
+            <div className="relative">
+              <img
+                src="/images/img_2.jpeg"
+                alt=""
+                className="w-full h-[620px] object-cover"
+              />
+              <img
+                src="/images/img_2.jpeg"
+                alt=""
+                className="absolute bottom-[-45px] right-[-35px] w-[170px] h-[190px] object-cover border-[8px] border-[#F7F6F4]"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
+          OUR REACH — With icons & consistent fonts
+      ═══════════════════════════════════════════════ */}
+      <section
+        id="reach"
+        className="relative overflow-hidden py-24 lg:py-32 bg-[#FCFAF7]"
+      >
+        {/* Background Blur */}
+        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#C6963F]/10 blur-[120px]" />
+
+        <div className="absolute -bottom-40 -left-40 w-[420px] h-[420px] rounded-full bg-[#0E1A30]/5 blur-[100px]" />
+
+        <div className="relative max-w-7xl mx-auto px-6">
+          {/* Heading */}
+
+          <div className="text-center mb-20" data-aos="fade-up">
+            <span className="uppercase tracking-[0.35em] text-xs text-[#C6963F] font-semibold">
+              Nationwide Presence
+            </span>
+
+            <h2 className="mt-5 font-serif-luxury text-5xl md:text-6xl text-[#0E1A30]">
+              Connecting Retail
+              <br />
+              Across India
+            </h2>
+
+            <p className="max-w-2xl mx-auto mt-7 text-[#777] leading-8">
+              For more than two decades, Onzone has expanded through trusted
+              relationships, serving retailers across metropolitan cities,
+              emerging markets and export destinations.
+            </p>
+          </div>
+
+          {/* Statistics */}
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+            {[
+              {
+                number: "25+",
+                label: "Years of Trust",
+              },
+              {
+                number: "2500+",
+                label: "Retail Partners",
+              },
+              {
+                number: "5",
+                label: "Regions",
+              },
+              {
+                number: "150K+",
+                label: "Garment Capacity",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                data-aos="zoom-in"
+                data-aos-delay={index * 100}
+                className="
+          bg-white/80
+          backdrop-blur-xl
+          rounded-[28px]
+          border
+          border-[#ECE7DD]
+          p-8
+          text-center
+          transition-all
+          duration-500
+          hover:-translate-y-3
+          hover:shadow-2xl
+          hover:border-[#C6963F]/50
+          "
+              >
+                <h3 className="font-serif-luxury text-5xl text-[#0E1A30]">
+                  {item.number}
+                </h3>
+
+                <p className="mt-3 uppercase tracking-[0.22em] text-xs text-[#8B8478]">
+                  {item.label}
+                </p>
               </div>
-              <div className="space-y-6">
-                {whyUsPoints.map((item) => (
-                  <div key={item.title} className="flex items-start gap-4">
-                    <WhyUsIcon path={item.icon} />
-                    <div>
-                      <p className="font-semibold text-white text-sm mb-1">
-                        {item.title}
-                      </p>
-                      <p className="text-white/55 text-sm leading-relaxed">
-                        {item.desc}
-                      </p>
+            ))}
+          </div>
+
+          {/* Cards */}
+
+          <div className="grid lg:grid-cols-2 gap-10">
+            {/* Left Card */}
+
+            <div
+              data-aos="fade-right"
+              className="
+        group
+        bg-white/80
+        backdrop-blur-xl
+        rounded-[32px]
+        border
+        border-[#ECE7DD]
+        p-10
+        transition-all
+        duration-500
+        hover:-translate-y-3
+        hover:shadow-2xl
+        "
+            >
+              <h3 className="font-serif-luxury text-3xl text-[#0E1A30] mb-10">
+                Our Network
+              </h3>
+
+              <div className="space-y-7">
+                {[
+                  {
+                    icon: Building2,
+                    title: "Tier 1 Metropolitan Cities",
+                    desc: "Established presence across major urban markets.",
+                  },
+                  {
+                    icon: TrendingUp,
+                    title: "Tier 2 & Tier 3 Growth Markets",
+                    desc: "Rapid expansion through trusted regional retailers.",
+                  },
+                  {
+                    icon: Home,
+                    title: "Emerging Semi-Urban Belts",
+                    desc: "Building long-term partnerships beyond metro cities.",
+                  },
+                ].map((item, index) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <div
+                      key={index}
+                      className="
+                flex
+                gap-5
+                pb-6
+                border-b
+                last:border-none
+                border-[#ECE7DD]
+                "
+                    >
+                      <div
+                        className="
+                  w-14
+                  h-14
+                  rounded-full
+                  bg-[#F8F5EF]
+                  flex
+                  items-center
+                  justify-center
+                  text-[#C6963F]
+                  transition-all
+                  duration-500
+                  group-hover:bg-[#0E1A30]
+                  group-hover:text-white
+                  "
+                      >
+                        <Icon size={24} />
+                      </div>
+
+                      <div>
+                        <h4 className="font-serif-luxury text-2xl text-[#0E1A30]">
+                          {item.title}
+                        </h4>
+
+                        <p className="mt-2 text-[#777] leading-7">
+                          {item.desc}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Right Card */}
+
+            <div
+              data-aos="fade-left"
+              className="
+        group
+        bg-white/80
+        backdrop-blur-xl
+        rounded-[32px]
+        border
+        border-[#ECE7DD]
+        p-10
+        transition-all
+        duration-500
+        hover:-translate-y-3
+        hover:shadow-2xl
+        "
+            >
+              <h3 className="font-serif-luxury text-3xl text-[#0E1A30] mb-10">
+                Retail Presence
+              </h3>
+
+              <div className="space-y-7">
+                {[
+                  {
+                    icon: Store,
+                    title: "Standalone Retailers",
+                    desc: "Serving thousands of independent menswear retailers.",
+                  },
+                  {
+                    icon: MapPinned,
+                    title: "Compact Retail Stores",
+                    desc: "Designed for efficient stores from 200 sq. ft. onward.",
+                  },
+                  {
+                    icon: Globe2,
+                    title: "Export Partnerships",
+                    desc: "Building international relationships with trusted partners.",
+                  },
+                ].map((item, index) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <div
+                      key={index}
+                      className="
+                flex
+                gap-5
+                pb-6
+                border-b
+                last:border-none
+                border-[#ECE7DD]
+                "
+                    >
+                      <div
+                        className="
+                  w-14
+                  h-14
+                  rounded-full
+                  bg-[#F8F5EF]
+                  flex
+                  items-center
+                  justify-center
+                  text-[#C6963F]
+                  transition-all
+                  duration-500
+                  group-hover:bg-[#0E1A30]
+                  group-hover:text-white
+                  "
+                      >
+                        <Icon size={24} />
+                      </div>
+
+                      <div>
+                        <h4 className="font-serif-luxury text-2xl text-[#0E1A30]">
+                          {item.title}
+                        </h4>
+
+                        <p className="mt-2 text-[#777] leading-7">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* ═══════════════════════════════════════════════
+          BUILT OVER TIME — Each item as a card with descriptive icon
+      ═══════════════════════════════════════════════ */}
+      <section
+        id="built-over-time"
+        className="relative py-20 bg-[#FDFAF5] bg-[url('https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=1600')] bg-cover bg-center bg-blend-overlay overflow-hidden"
+      >
+        {/* Light overlay for readability */}
+        <div className="absolute inset-0 bg-[#FDFAF5]/80 -z-0" />
+
+        <div className="relative z-10">
+          <div className="text-center mb-14" data-aos="fade-up">
+            <h2 className="font-serif-luxury text-4xl md:text-5xl font-normal text-[#0E1A30] normal-case not-italic">
+              Built Over Time
+            </h2>
+            <div className="w-12 h-px bg-[#C6963F] mx-auto mt-4" />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-8 gap-6 px-5 mx-auto">
+            {/* 1. 25+ Years */}
+            <div
+              data-aos="fade-up"
+              data-aos-delay="0"
+              className="bg-white/90 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#0E1A30]/5 p-6 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 flex items-center justify-center mb-3 text-[#2B2820]">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-10 h-10"
+                >
+                  <path d="M3 21h18" />
+                  <path d="M5 21V7l7-5 7 5v14" />
+                  <path d="M9 21v-4h6v4" />
+                  <path d="M9 11h.01" />
+                  <path d="M15 11h.01" />
+                  <path d="M9 15h.01" />
+                  <path d="M15 15h.01" />
+                </svg>
+              </div>
+              <span className="font-serif-luxury text-base md:text-lg text-[#2B2820] normal-case not-italic leading-[1.3]">
+                25+ Years of Continuous Operations
+              </span>
+            </div>
+
+            {/* 2. 2500+ Direct Retail Partners */}
+            <div
+              data-aos="fade-up"
+              data-aos-delay="60"
+              className="bg-white/90 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#0E1A30]/5 p-6 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 flex items-center justify-center mb-3 text-[#2B2820]">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-10 h-10"
+                >
+                  <path d="M17 11v4.5a2.5 2.5 0 0 1-5 0V11" />
+                  <path d="M7 11v4.5a2.5 2.5 0 0 0 5 0V11" />
+                  <path d="M12 8v3" />
+                  <path d="M12 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                  <path d="M7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                  <path d="M17 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                  <path d="M5 12h.01" />
+                  <path d="M19 12h.01" />
+                  <path d="M5 16h.01" />
+                  <path d="M19 16h.01" />
+                </svg>
+              </div>
+              <span className="font-serif-luxury text-base md:text-lg text-[#2B2820] normal-case not-italic leading-[1.3]">
+                2500+ Direct Retail Partners
+              </span>
+            </div>
+
+            {/* 3. 150,000+ Garment Holding Capacity */}
+            <div
+              data-aos="fade-up"
+              data-aos-delay="120"
+              className="bg-white/90 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#0E1A30]/5 p-6 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 flex items-center justify-center mb-3 text-[#2B2820]">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-10 h-10"
+                >
+                  <path d="M20 4h-4a3 3 0 0 0-3 3v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V4z" />
+                  <path d="M4 4h4a3 3 0 0 1 3 3v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4z" />
+                  <path d="M12 7a3 3 0 0 0-3-3H7" />
+                  <path d="M12 7a3 3 0 0 1 3-3h2" />
+                  <path d="M8 2v2" />
+                  <path d="M16 2v2" />
+                </svg>
+              </div>
+              <span className="font-serif-luxury text-base md:text-lg text-[#2B2820] normal-case not-italic leading-[1.3]">
+                150,000+ Garment Holding Capacity
+              </span>
+            </div>
+
+            {/* 4. Multi-Generational Leadership */}
+            <div
+              data-aos="fade-up"
+              data-aos-delay="180"
+              className="bg-white/90 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#0E1A30]/5 p-6 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 flex items-center justify-center mb-3 text-[#2B2820]">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-10 h-10"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                  <path d="M12 11v3" />
+                  <path d="M12 17v.01" />
+                </svg>
+              </div>
+              <span className="font-serif-luxury text-base md:text-lg text-[#2B2820] normal-case not-italic leading-[1.3]">
+                Multi-Generational Leadership
+              </span>
+            </div>
+
+            {/* 5. Long-Term Vendor Associations */}
+            <div
+              data-aos="fade-up"
+              data-aos-delay="240"
+              className="bg-white/90 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#0E1A30]/5 p-6 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 flex items-center justify-center mb-3 text-[#2B2820]">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-10 h-10"
+                >
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                </svg>
+              </div>
+              <span className="font-serif-luxury text-base md:text-lg text-[#2B2820] normal-case not-italic leading-[1.3]">
+                Long-Term Vendor Associations
+              </span>
+            </div>
+
+            {/* 6. Financially Disciplined Growth */}
+            <div
+              data-aos="fade-up"
+              data-aos-delay="300"
+              className="bg-white/90 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#0E1A30]/5 p-6 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 flex items-center justify-center mb-3 text-[#2B2820]">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-10 h-10"
+                >
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                  <polyline points="17 6 23 6 23 12" />
+                </svg>
+              </div>
+              <span className="font-serif-luxury text-base md:text-lg text-[#2B2820] normal-case not-italic leading-[1.3]">
+                Financially Disciplined Growth
+              </span>
+            </div>
+
+            {/* 7. Organic Market Expansion */}
+            <div
+              data-aos="fade-up"
+              data-aos-delay="360"
+              className="bg-white/90 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#0E1A30]/5 p-6 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 flex items-center justify-center mb-3 text-[#2B2820]">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-10 h-10"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M2 12h20" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+              </div>
+              <span className="font-serif-luxury text-base md:text-lg text-[#2B2820] normal-case not-italic leading-[1.3]">
+                Organic Market Expansion
+              </span>
+            </div>
+
+            {/* 8. Zero Discount-Dumping Philosophy */}
+            <div
+              data-aos="fade-up"
+              data-aos-delay="420"
+              className="bg-white/90 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#0E1A30]/5 p-6 flex flex-col items-center text-center"
+            >
+              <div className="w-12 h-12 flex items-center justify-center mb-3 text-[#2B2820]">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-10 h-10"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <polyline points="9 12 11 14 15 10" />
+                </svg>
+              </div>
+              <span className="font-serif-luxury text-base md:text-lg text-[#2B2820] normal-case not-italic leading-[1.3]">
+                Zero Discount-Dumping Philosophy
+              </span>
+            </div>
+          </div>
+
+          <div className="max-w-2xl mx-auto text-center mt-16 pt-12 border-t border-[#0E1A30]/5">
+            <p className="font-serif-luxury text-xl md:text-2xl text-[#2B2820]/80 italic leading-[1.6] not-italic">
+              “Trust is not built through announcements.{" "}
+              <br className="md:hidden" />
+              It is built through repeat seasons.”
+            </p>
+            <div className="mt-10">
+              <span className="font-mono text-[0.55rem] tracking-[0.3em] uppercase text-[#6B665A]">
+                Precision
+              </span>
+              <div className="font-serif-luxury text-2xl md:text-3xl text-[#C6963F] normal-case not-italic mt-1">
+                IN EVERY STITCH.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* ═══════════════════════════════════════════════
+          PARTNER CTA
+      ═══════════════════════════════════════════════ */}
+      {/* <section className="relative py-24 md:py-32 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/img_6.jpeg')" }}
+        />
+        <div className="absolute inset-0 bg-[#0E1A30]/75" />
+
+        <div className="relative z-10 text-center px-6" data-aos="fade-up">
+          <h2 className="font-serif-luxury text-3xl md:text-5xl text-white font-normal leading-[1.1] mb-6 normal-case not-italic">
+            Partner with Onzone
+          </h2>
+          <p className="text-white/60 text-base md:text-lg max-w-lg mx-auto leading-[1.8] mb-10">
+            Be part of a trusted journey. Speak directly with our trade team or
+            request our latest AW'25 catalogue.
+          </p>
+          <Link
+            to="/contact"
+            className="inline-block font-mono text-[0.7rem] tracking-[0.18em] uppercase text-[#C6963F] border-b-2 border-[#C6963F] pb-2 hover:text-white hover:border-white transition-colors no-underline"
+          >
+            Get In Touch
+          </Link>
+        </div>
+      </section> */}
     </div>
   );
 };

@@ -53,23 +53,21 @@ const Lookbook = () => {
   ];
 
   return (
-    <section
-      className="py-16 md:py-24 bg-[#FDFAF5]"
-      id="lookbook"
-    >
+    <section className="py-16 md:py-24 bg-[#FDFAF5]" id="lookbook">
       <div className="max-w-[1180px] mx-auto px-6 md:px-10">
         {/* Header row */}
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-10 gap-4 sm:gap-0">
           <div>
-            <div className="mb-3 font-mono text-[0.63rem] tracking-[0.18em] uppercase text-[#A87B31]">
-              AW'25 · Lookbook
+            <div className="flex items-center gap-3.5 mb-3">
+              <div className="w-12 h-[2px] bg-[#C6963F]" />
+              <span className="font-mono text-[0.82rem] font-bold tracking-[0.22em] uppercase text-[#C6963F]">
+                AW'25 · Lookbook
+              </span>
             </div>
             <h2 className="font-serif-luxury font-normal text-3xl md:text-[clamp(2rem,3.5vw,2.8rem)] leading-[1.1] text-[#2B2820] normal-case not-italic">
               Style is a journey.
               <br />
-              <em className="text-[#A87B31] italic">
-                Not a destination.
-              </em>
+              <em className="text-[#A87B31] italic">Not a destination.</em>
             </h2>
           </div>
           <a
@@ -85,7 +83,7 @@ const Lookbook = () => {
           {cards.map((card, i) => (
             <div
               key={i}
-              className={`group relative overflow-hidden cursor-pointer bg-cover bg-center ${card.tall ? 'row-span-2' : 'row-span-1'}`}
+              className={`group relative overflow-hidden cursor-pointer bg-cover bg-center ${card.tall ? "row-span-2" : "row-span-1"}`}
               style={{ backgroundImage: `url('${card.img}')` }}
             >
               {/* Gradient overlay — always visible at bottom */}
